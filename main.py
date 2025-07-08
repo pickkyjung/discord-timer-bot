@@ -29,7 +29,6 @@ def run():
 def keep_alive():
     t = Thread(target=run)
     t.start()
-
 # ---------------------------------------------------
 
 weekly_schedule = {
@@ -76,6 +75,11 @@ async def send_message():
         if channel:
             for msg in messages:
                 await channel.send(msg)
+
+# ✅ เพิ่ม !test ไว้เทสต์ bot ว่าทำงาน
+@bot.command()
+async def test(ctx):
+    await ctx.send("✅ Bot ทำงานปกติจ้า!")
 
 # ---- เรียกทั้ง Flask + Bot ----
 keep_alive()
