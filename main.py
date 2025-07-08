@@ -16,19 +16,21 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 tz = pytz.timezone("Asia/Bangkok")
 
+# ---------------------- Flask ----------------------
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return "Bot is alive!"
 
-if __name__ == '__main__':
+def run():
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
-    
+
 def keep_alive():
     t = Thread(target=run)
     t.start()
+# ---------------------------------------------------
 
 weekly_schedule = {
     "daily": {
@@ -75,5 +77,6 @@ async def send_message():
             for msg in messages:
                 await channel.send(msg)
 
+# ---- เรียกทั้ง Flask + Bot ----
 keep_alive()
 bot.run(TOKEN)
