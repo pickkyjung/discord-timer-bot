@@ -21,15 +21,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Bot is alive!"
+    return "Bot is alive!"  # 👈 Keyword ที่ uptime robot จะตรวจ
 
 def run():
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
 
 def keep_alive():
     t = Thread(target=run)
     t.start()
+
 # ---------------------------------------------------
 
 weekly_schedule = {
